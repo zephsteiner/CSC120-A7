@@ -109,8 +109,12 @@ public class Library extends Building {
         System.out.println(title + " is checked out.");
       }
     }
-
   }
+
+  public void showOptions() {
+    System.out.println("Available options at " + this.name 
+    + ":\n + enter() \n + exit() \n + goUp() \n + goDown()\n + goToFloor(n)\n + checkOut(title)\n + returnBook(title)\n + containsTitle(title)\n + isAvailable(title)");
+}
   
   /**
    * for testing

@@ -24,7 +24,7 @@ public class Cafe extends Building {
         this.nSugarPackets = 80;
         this.nCreams = 60;
         this.nCups = 50;
-        System.out.println("You have built a cafe: ☕");
+        System.out.println("You have built a cafe: " + this.name);
     }
 
     /**
@@ -77,6 +77,18 @@ public class Cafe extends Building {
     }
 
     /**
+     * Overridden goToFloor() method to account for the lack of a cafe elevator
+     * @param floorNum Number of floor to go to
+     */
+    public void goToFloor(int floorNum) {
+        throw new RuntimeException(this.name + " does not have an elevator.");
+    }
+
+    public void showOptions() {
+        System.out.println("Available options at " + this.name + ":\n + enter() \n + exit() \n + goUp() \n + goDown()\n + goToFloor(n)\n + sellCoffee(size, sugars, creams)");
+    }
+
+    /**
      * toString for a Cafe object
      */
     public String toString() {
@@ -94,6 +106,7 @@ public class Cafe extends Building {
         System.out.println(ccCafe);
         ccCafe.sellCoffee(12, 2, 61);
         System.out.println(ccCafe);
+        ccCafe.showOptions();
     }
     
 }

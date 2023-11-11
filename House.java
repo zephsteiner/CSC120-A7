@@ -13,7 +13,7 @@ public class House extends Building{
   private boolean hasDiningRoom;
   /** How many people can live here? */
   private int maxCapacity;
-  /** Does the house have an elevator? */
+  /** Does the House have an elevator? */
   private boolean hasElevator;
 
   /**
@@ -30,7 +30,7 @@ public class House extends Building{
     this.residents = new ArrayList<String>(maxCapacity);
     this.hasDiningRoom = hasDiningRoom;
     this.hasElevator = hasElevator;
-    System.out.println("You have built a house: 🏠");
+    System.out.println("You have built a house: " + this.name);
   }
 
   /**
@@ -94,11 +94,28 @@ public class House extends Building{
   }
 
   /**
+   * Move to a specified floor
+   * @param floorNum Floor to go to
+   */
+  public void goToFloor(int floorNum) {
+    if (!this.hasElevator) {
+      throw new RuntimeException(this.name + " does not have an elevator. Try calling goUp() or goDown()");
+    }
+    super.goToFloor(floorNum);
+  }
+
+  public void showOptions() {
+    System.out.println("Available options at " + this.name 
+    + ":\n + enter() \n + exit() \n + goUp() \n + goDown()\n + goToFloor(n)\n + moveIn(name)\n + moveOut(name)");
+  }
+
+  /**
    * for testing
    * @param args
    */
   public static void main(String[] args) {
-    new House("Washburn House","2 Seeyle Drive",4, false, 44, false);
+    House washburn = new House("Washburn House","2 Seeyle Drive",4, false, 44, false);
+    washburn.showOptions();
   }
 
 }
