@@ -10,6 +10,19 @@ public class Library extends Building {
   /** The collection of items in the Library */
   private Hashtable<String, Boolean> collection;
 
+  /** Does the Library have an elevator? */
+  private boolean hasElevator;
+
+  /** Default Library constructor */
+  public Library() {
+    this("<Name Unknown>", "<Address Unknown>", 1);
+  }
+
+  /* Overloaded constructor with name, address */
+  public Library(String name, String address) {
+    this(name, address, 1);
+  }
+
   /**
    * Creates a new Library object
    * @param name The name of the Library
@@ -19,6 +32,7 @@ public class Library extends Building {
   public Library(String name, String address, int nFloors) {
     super(name, address, nFloors);
     this.collection = new Hashtable<String, Boolean>();
+    this.hasElevator = true;
     System.out.println("You have built a library: 📖");
   }
 
@@ -114,8 +128,15 @@ public class Library extends Building {
   public void showOptions() {
     System.out.println("Available options at " + this.name 
     + ":\n + enter() \n + exit() \n + goUp() \n + goDown()\n + goToFloor(n)\n + checkOut(title)\n + returnBook(title)\n + containsTitle(title)\n + isAvailable(title)");
-}
+  }
   
+  public void goToFloor(int floorNum) {
+    if (!this.hasElevator) {
+      throw new RuntimeException(this.name + " does not have an elevator. Try calling goUp() or goDown()");
+    }
+    super.goToFloor(floorNum);
+  }
+
   /**
    * for testing
    * @param args

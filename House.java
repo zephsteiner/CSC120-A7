@@ -16,6 +16,18 @@ public class House extends Building{
   /** Does the House have an elevator? */
   private boolean hasElevator;
 
+  /** Default House constructor */
+  public House() {
+    this("<Name Unknown>", "<Address Unknown>", 1, false, 0, false);
+
+  }
+
+  /** For constructing dining-only Houses */
+  public House(String name, String address) {
+    this(name, address, 1, true, 0, false);
+  }
+
+
   /**
    * Creates a new House object
    * @param name Name of House

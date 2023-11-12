@@ -12,6 +12,18 @@ public class Cafe extends Building {
     /** The number of cups remaining in inventory */
     private int nCups;
 
+    public Cafe() {
+        this("<Name Unknown>", "<Address Unknown>", 1);
+    }
+
+
+    /**
+     * Overloaded constructor to create a single-story cafe, the most common iteration
+     */
+    public Cafe(String name, String address) {
+        this(name, address, 1);
+    }
+
     /**
      * Creates a new Cafe object
      * @param name The name of the Cafe
@@ -60,6 +72,14 @@ public class Cafe extends Building {
             restock(0, 0, 0, 50);
             this.nCups -= 1;
         }
+    }
+
+    /**
+     * Overloaded sellCoffee() for easier ordering of a black coffee (with no sugar or cream)
+     * @param size Number of ounces in the coffee to be sold
+     */
+    public void sellCoffee(int size) {
+        this.sellCoffee(size, 0, 0);
     }
 
     /**
