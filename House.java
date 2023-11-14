@@ -116,6 +116,7 @@ public class House extends Building{
     super.goToFloor(floorNum);
   }
 
+  /** showOptions() method for a House */
   public void showOptions() {
     System.out.println("Available options at " + this.name 
     + ":\n + enter() \n + exit() \n + goUp() \n + goDown()\n + goToFloor(n)\n + moveIn(name)\n + moveOut(name)");

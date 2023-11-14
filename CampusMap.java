@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class CampusMap {
 
@@ -51,10 +52,56 @@ public class CampusMap {
         myMap.addBuilding(new Building("Burton Hall", "46 College Lane Northampton, MA 01063", 4));
         myMap.addBuilding(new Building("Parking Garage", "54 West Street Northampton, MA 01060", 5));
         myMap.addBuilding(new Building("Lyman Plant House", "16 College Lane Northampton, MA 01063"));
-        myMap.addBuilding(new Library("Josten Library", "122 Green Street Northampton, MA 01063"));
+        myMap.addBuilding(new Library("Josten Library", new Building("Mendenhall", "122 Green Street Northampton, MA 01063", 3)));
         myMap.addBuilding(new House("Dawes House", "8 Bedford Terrace Northampton, MA 01063"));
         myMap.addBuilding(new Cafe("Compass Cafe", "7 Neilson Drive Northampton, MA 01063"));
         System.out.println(myMap);
+
+        // here's my vague attempt at the loop to explore buildings! 
+        // it works successfully only for things created as buildings
+        // and only if you don't do anything that would throw an exception
+        // i'm sure i could get it to work better if i poked at it way longer though
+        boolean go = true;
+        Scanner input = new Scanner(System.in);
+        while (go) {
+            System.out.println("Welcome to campus! Type a building to explore:");
+            for (Building b : myMap.buildings) {
+                if (b.getName().equals(input.nextLine())) {
+                    b.showOptions();
+                    if (input.nextLine().equals("enter()")) {
+                        b.enter();
+                    }
+                    if (input.nextLine().equals("exit()")) {
+                        b.exit();
+                        System.out.println("Keep going? y or n");
+                        if (input.nextLine().equals("y")) {
+                            System.out.println("Pick a new building to explore.");
+                        }
+                        else {
+                            go = false;
+                            System.out.println("Thanks for playing!");
+                            // input.close();
+                            break;
+                        }
+                    }
+                    if (input.nextLine().equals("goUp()")) {
+                        b.goUp();
+                    }
+                    if (input.nextLine().equals("goDown()")) {
+                        b.goDown();
+                    }
+                    if (input.nextLine().contains("goToFloor")) {
+                        System.out.println("What floor?");
+                        b.goToFloor(input.nextInt());
+                    }
+                    // if (input.nextLine().contains("moveIn") && b instanceof House) {
+                    //     System.out.println("Who?");
+                    //     b.moveIn(input.nextLine());
+                    // }
+                }
+            }
+        }
+        input.close();
     }
     
 }

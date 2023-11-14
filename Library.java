@@ -9,18 +9,21 @@ public class Library extends Building {
 
   /** The collection of items in the Library */
   private Hashtable<String, Boolean> collection;
-
   /** Does the Library have an elevator? */
   private boolean hasElevator;
+  /** Building the Library is contained inside of (optional) */
+  private Building building = null;
+
 
   /** Default Library constructor */
   public Library() {
     this("<Name Unknown>", "<Address Unknown>", 1);
   }
 
-  /* Overloaded constructor with name, address */
-  public Library(String name, String address) {
-    this(name, address, 1);
+  /* Overloaded constructor for libraries inside other buildings */
+  public Library(String name, Building building) {
+    this(name, building.address, 1);
+    this.building = building;
   }
 
   /**
@@ -34,6 +37,14 @@ public class Library extends Building {
     this.collection = new Hashtable<String, Boolean>();
     this.hasElevator = true;
     System.out.println("You have built a library: 📖");
+  }
+
+  public String getAddress() {
+    if (this.building != null) {
+      return "Located inside of " + this.building.getName() + " at " + this.address;
+    } else {
+      return this.address;
+    }
   }
 
   /**
@@ -125,11 +136,13 @@ public class Library extends Building {
     }
   }
 
+  /** showOptions() method for Library objects */
   public void showOptions() {
     System.out.println("Available options at " + this.name 
     + ":\n + enter() \n + exit() \n + goUp() \n + goDown()\n + goToFloor(n)\n + checkOut(title)\n + returnBook(title)\n + containsTitle(title)\n + isAvailable(title)");
   }
   
+  /** goToFloor() method for Library objects */
   public void goToFloor(int floorNum) {
     if (!this.hasElevator) {
       throw new RuntimeException(this.name + " does not have an elevator. Try calling goUp() or goDown()");

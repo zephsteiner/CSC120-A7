@@ -12,10 +12,10 @@ public class Cafe extends Building {
     /** The number of cups remaining in inventory */
     private int nCups;
 
+    /** Default Cafe constructor */
     public Cafe() {
         this("<Name Unknown>", "<Address Unknown>", 1);
     }
-
 
     /**
      * Overloaded constructor to create a single-story cafe, the most common iteration
@@ -104,6 +104,7 @@ public class Cafe extends Building {
         throw new RuntimeException(this.name + " does not have an elevator.");
     }
 
+    /** showOptions() method for Cafe objects */
     public void showOptions() {
         System.out.println("Available options at " + this.name + ":\n + enter() \n + exit() \n + goUp() \n + goDown()\n + goToFloor(n)\n + sellCoffee(size, sugars, creams)");
     }
